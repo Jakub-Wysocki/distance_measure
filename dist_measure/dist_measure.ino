@@ -10,12 +10,12 @@ void SetupTimer1() {
   TCCR1A = 0;
   TCCR1B = 0;
   TCNT1 = 0;
-  
-  ICR1 = 0 // set input caputre register to 0
 
-  OCR1A = 46400; //Count up to 46400. 1 cycle is 0.5uS. Should I add additional clock cycles? Noice canceler is turned off. 
+  ICR1 = 0;
+
+  OCR1A = 62500; //1 cycle is 0.5uS. Should I add additional clock cycles?  
   TCCR1B |= (1 << WGM12); // Set CTC mode
-  TCCR1B |= (1 << CS11);  // Set prescaler to 8
+  TCCR1B |= (1 << CS11);  // Set prescaler to 8 
   TCCR1B |= (1 << ICES1) | (1 << ICNC1);  // Set Input Capture Mode on rising edge and the Noise Canceler
   TIMSK1 |= (1 << OCIE1A) | (1 << ICIE1); // Output Compare Match A Interrupt Enable, and Input capture interrupt
   interrupts();
@@ -34,37 +34,30 @@ void GenerateImpulse()
   PORTB &= 0b11111101; //Finish signal
 
 }
-float CaptureInput()
-{
-  if(t_start != ICR1)
-    t_stop = ICR1;
-
-  
-}
 ISR(TIMER1_CAPT_vect) //input capture interrupt.
 {
 
-    t_start = ICR1;
-
-  
-  /*
   if((TCCR1B &= 0b01000000)  == 0b01000000) //if rising edge is set
   {
     t_start = ICR1;
-    Serial.println("Hello");
+    Serial.println(t_start);
     TCCR1B &= 0b10111111; //set to falling edge
     
   }
-  else
+  else //if falling edge is set
   {
      t_stop = ICR1;
      TCCR1B |= (1 << ICES1); //set to rising edge
-
-     temp = (float)((t_stop - t_start)*0.5)/58;
-    
+     Serial.println(t_stop);
+     temp = (((float)t_stop - (float)t_start)*0.5)/58.0;
   }
-    
- */
+  
+}
+ISR(TIMER1_OVF_vect) //interrupt when ditance is too large. 
+{
+  Serial.println("Too large!\n");
+  Serial.println(temp);
+  temp = 999;
 }
 int main(void)
 {
@@ -73,9 +66,13 @@ int main(void)
   SetupTimer1();  
 
   GenerateImpulse();
+  _delay_ms(100);
+  Serial.println(temp);
 
-  while(t_start != )
-  
+  while(1)
+  {
+    //delay somehow
+  }
 
-  return 0;
+
 }
