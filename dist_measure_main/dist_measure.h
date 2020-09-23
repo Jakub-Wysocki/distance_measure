@@ -16,7 +16,7 @@ void setTimer1()
 }
 void genImpulse()
 {
-  DDRB |= 0b00000010; //set PD5 to output
+  DDRB |= 0b00000010; //set PB0 to output
   short ctr = TCNT1;
   
   PORTB &= 0b11111101; //set output to 0
