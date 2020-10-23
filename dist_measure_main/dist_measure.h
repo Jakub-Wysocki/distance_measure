@@ -1,4 +1,7 @@
-void setTimer1()
+#ifndef DIST_MEASURE_H
+#define DIST_MEASURE_H
+
+void setTimer1() //initalize the timer1 in CTC mode. Set global interruption flag, init 
 {
   sei(); //enable interrupts
   TCCR1A = 0; //clear registers
@@ -14,7 +17,7 @@ void setTimer1()
   TIMSK1 |= (1 << OCIE1A) | (1 << ICIE1); // Output Compare Match A Interrupt Enable, and Input capture interrupt
 
 }
-void genImpulse()
+void genImpulse() //function generates impulse
 {
   DDRB |= 0b00000010; //set PB0 to output
   short ctr = TCNT1;
@@ -28,3 +31,5 @@ void genImpulse()
   PORTB &= 0b11111101; //set output to 0
 
 }
+
+#endif

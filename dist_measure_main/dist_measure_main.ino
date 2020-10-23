@@ -8,10 +8,10 @@ volatile float t_start = 0.0, t_stop = 0.0, distance = 0.0;
 
 int main(void)
 {
-  DDRB &= 0b11111110;//echo - recive signal, PB0
+  DDRB &= 0b11111110; //echo - recive signal, PB0
   DDRB |= 0b00100010; //trigger send signal, PB1
   Init(); //initialize LCD
-  setTimer1();
+  setTimer1(); 
   
   while(1)
   {
