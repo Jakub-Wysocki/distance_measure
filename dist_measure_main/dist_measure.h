@@ -17,7 +17,7 @@ void setTimer1() //initalize the timer1 in CTC mode. Set global interruption fla
   TIMSK1 |= (1 << OCIE1A) | (1 << ICIE1); // Output Compare Match A Interrupt Enable, and Input capture interrupt
 
 }
-void genImpulse() //function generates impulse
+void genImpulse() //function generates 15us impulse to start the measurement. The impulse is porceded by 10us low state, to avoid errors
 {
   DDRB |= 0b00000010; //set PB0 to output
   short ctr = TCNT1;

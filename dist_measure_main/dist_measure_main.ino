@@ -42,5 +42,5 @@ ISR(TIMER1_CAPT_vect) //input capture interrupt
 }
 ISR(TIMER1_COMPA_vect) //interrupt when distance is too large. 
 {
- //nothing
+  distance = 999;
 }
