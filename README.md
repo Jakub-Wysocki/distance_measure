@@ -38,7 +38,3 @@ D6 - Arduino PD2 <br />
 D7 - Arduino PD3 <br />
 Anode - Arduino 5V via breadboard <br />
 Katode - Arduino GND via 220Ohms resistor via breadboard <br />
-
-
-## Known Bugs
-Value of the some measurement is incorrect. The incorrect measurement is in the region of -350cm. 
