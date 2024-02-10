@@ -1,6 +1,10 @@
 # distance_measure
 ## About
-Simple program that measures distance using HC-SR04 ultrasonic sensor. This project uses Arduino Uno witch ATmega328P microprocessor and it is written in clear C.
+Simple program that measures distance using HC-SR04 ultrasonic sensor. This project uses Arduino Uno with ATmega328P microprocessor. It is written bare metal, it do not use neither Arduino library or any RTOS. 
+
+## Status
+
+This is a project I made on univeristy. It would be nice to provide specific config file for pinout and refactor the code for clarity  
 
 ## Pinout
 
